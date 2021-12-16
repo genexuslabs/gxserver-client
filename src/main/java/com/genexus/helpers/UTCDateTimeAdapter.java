@@ -23,9 +23,9 @@
  */
 package com.genexus.helpers;
 
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.DateFormat;
 import java.util.Date;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  *

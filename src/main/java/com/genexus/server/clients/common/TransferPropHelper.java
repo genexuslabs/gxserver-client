@@ -23,10 +23,10 @@
  */
 package com.genexus.server.clients.common;
 
+import com.genexus.server.services.contracts.*;
 import java.io.IOException;
 import java.text.MessageFormat;
 import javax.xml.datatype.XMLGregorianCalendar;
-import org.jenkinsci.plugins.genexus.server.services.contracts.*;
 
 /**
  *

@@ -23,6 +23,7 @@
  */
 package com.genexus.server.clients.common;
 
+import jakarta.xml.ws.BindingProvider;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -36,7 +37,6 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.xml.ws.BindingProvider;
 
 /**
  * Ideas and code taken from
@@ -126,9 +126,9 @@ public class NaiveSSLHelper {
     }
 
     private static final String JAXWS_HOSTNAME_VERIFIER
-            = "com.sun.xml.internal.ws.transport.https.client.hostname.verifier";
-            //= JAXWSProperties.HOSTNAME_VERIFIER;
+            = "com.sun.xml.ws.transport.https.client.hostname.verifier";
+            //= com.sun.xml.ws.developer.JAXWSProperties.HOSTNAME_VERIFIER;
     private static final String JAXWS_SSL_SOCKET_FACTORY
-            = "com.sun.xml.internal.ws.transport.https.client.SSLSocketFactory";
-            //= JAXWSProperties.SSL_SOCKET_FACTORY;
+            = "com.sun.xml.ws.transport.https.client.SSLSocketFactory";
+            //= com.sun.xml.ws.developer.JAXWSProperties.SSL_SOCKET_FACTORY;
 }

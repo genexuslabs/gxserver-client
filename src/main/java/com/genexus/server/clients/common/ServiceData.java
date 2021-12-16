@@ -75,7 +75,7 @@ public class ServiceData {
         return userPassword;
     }
 
-    public static final String GXSERVER_ISSECURE_PROPERTY = "genexus.gxserverclient.server.services.common.servicedata.issecure";
-    public static final String GXSERVER_USERNAME_PROPERTY = "genexus.gxserverclient.server.services.common.serviceinfo.username";
-    public static final String GXSERVER_PASSWORD_PROPERTY = "genexus.gxserverclient.server.services.common.serviceinfo.password";
+    public static final String GXSERVER_ISSECURE_PROPERTY = "com.genexus.server.clients.common.servicedata.issecure";
+    public static final String GXSERVER_USERNAME_PROPERTY = "com.genexus.server.clients.common.serviceinfo.username";
+    public static final String GXSERVER_PASSWORD_PROPERTY = "com.genexus.server.clients.common.serviceinfo.password";
 }

@@ -28,6 +28,7 @@ import com.genexus.helpers.XmlHelper;
 import com.genexus.server.info.RevisionInfo;
 import com.genexus.server.info.RevisionList;
 import com.genexus.server.info.VersionInfo;
+import jakarta.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,7 +38,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.JAXBException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -124,7 +124,7 @@ public class RevisionsQuery implements Iterable<RevisionInfo> {
 
     @Override
     public Iterator<RevisionInfo> iterator() {
-        return null; //new RevisionsIterator();
+        return new RevisionsIterator();
     }
 
     public RevisionInfo getFirstItem() {
@@ -185,7 +185,7 @@ public class RevisionsQuery implements Iterable<RevisionInfo> {
         private void getNextPage() throws IOException {
             int newPageNumber = currentPageNumber + 1;
             RevisionList newPage = twClient.getRevisions(kbName, getVersionId(), query, newPageNumber);
-            if (newPage != null && !newPage.isEmpty()) {
+            if (newPage != null && newPage.size() > 0) {
                 currentPageNumber = newPageNumber;
                 currentPageList = newPage;
                 gotLastPage = (newPage.size() < REVISIONS_PAGE_SIZE);

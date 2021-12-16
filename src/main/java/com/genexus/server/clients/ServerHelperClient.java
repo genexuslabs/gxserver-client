@@ -23,25 +23,25 @@
  */
 package com.genexus.server.clients;
 
-import com.genexus.server.info.ServerInfo;
 import com.genexus.server.clients.common.ServiceData;
 import com.genexus.server.clients.common.ServiceInfo;
 import com.genexus.server.clients.common.TransferPropConstants;
 import com.genexus.server.clients.common.TransferPropHelper;
+import com.genexus.server.info.ServerInfo;
+import com.genexus.server.services.contracts.ArrayOfServerMessage;
+import com.genexus.server.services.contracts.ArrayOfTransferProp;
+import com.genexus.server.services.contracts.TransferProp;
+import com.genexus.server.services.helper.IServerHelper;
+import com.genexus.server.services.helper.IServerHelperIsServerAliveGXServerExceptionFaultFaultMessage;
+import com.genexus.server.services.helper.IServerHelperServerInfoGXServerExceptionFaultFaultMessage;
+import com.genexus.server.services.helper.ServerHelper;
+import com.genexus.server.services.helper.SimpleTransfer;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.Holder;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.Holder;
-import org.jenkinsci.plugins.genexus.server.services.contracts.ArrayOfServerMessage;
-import org.jenkinsci.plugins.genexus.server.services.contracts.ArrayOfTransferProp;
-import org.jenkinsci.plugins.genexus.server.services.contracts.TransferProp;
-import org.jenkinsci.plugins.genexus.server.services.helper.IServerHelper;
-import org.jenkinsci.plugins.genexus.server.services.helper.IServerHelperIsServerAliveGXServerExceptionFaultFaultMessage;
-import org.jenkinsci.plugins.genexus.server.services.helper.IServerHelperServerInfoGXServerExceptionFaultFaultMessage;
-import org.jenkinsci.plugins.genexus.server.services.helper.ServerHelper;
-import org.jenkinsci.plugins.genexus.server.services.helper.SimpleTransfer;
 
 /**
  *

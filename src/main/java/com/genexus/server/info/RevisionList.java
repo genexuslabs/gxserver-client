@@ -23,12 +23,13 @@
  */
 package com.genexus.server.info;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -38,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class RevisionList extends ArrayList<RevisionInfo> {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
     @XmlElement(name = "Revision")
     private List<RevisionInfo> getRevisions() {
         return this;

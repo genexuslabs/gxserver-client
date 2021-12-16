@@ -26,13 +26,13 @@ package com.genexus.server.clients;
 import com.genexus.server.clients.common.NaiveSSLHelper;
 import com.genexus.server.clients.common.ServiceData;
 import com.genexus.server.clients.common.ServiceInfo;
+import jakarta.xml.ws.BindingProvider;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
-import javax.xml.ws.BindingProvider;
 
 /**
  *
