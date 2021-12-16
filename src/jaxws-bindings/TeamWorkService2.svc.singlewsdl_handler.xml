@@ -8,20 +8,20 @@
 
     <jaxb:bindings node="wsdl:definitions" xmlns:jws="http://java.sun.com/xml/ns/javaee">
         <!-- Classes specific to this service (TeamWorkService2) use this package name -->
-        <jaxws:package name="org.jenkinsci.plugins.genexus.server.services.teamwork"/>
+        <jaxws:package name="com.genexus.server.services.teamwork"/>
         <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
     </jaxb:bindings>
 
     <!-- Set packange name binding for our specicic schema -->
     <jaxb:bindings node="//xsd:schema[@targetNamespace='http://tempuri.org/']" schemaLocation="xs:http://tempuri.org/">
         <jaxb:schemaBindings>
-            <jaxb:package name="org.jenkinsci.plugins.genexus.server.services.teamwork"/>
+            <jaxb:package name="com.genexus.server.services.teamwork"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
 
     <jaxb:bindings node="//xsd:schema[@targetNamespace='http://schemas.microsoft.com/Message']" schemaLocation="xs:http://schemas.microsoft.com/Message">
         <jaxb:schemaBindings>
-            <jaxb:package name="org.jenkinsci.plugins.genexus.server.services.message"/>
+            <jaxb:package name="com.genexus.server.services.message"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
     
