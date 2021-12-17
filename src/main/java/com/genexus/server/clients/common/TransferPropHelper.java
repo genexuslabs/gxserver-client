@@ -23,7 +23,15 @@
  */
 package com.genexus.server.clients.common;
 
-import com.genexus.server.services.contracts.*;
+import com.genexus.server.services.contracts.BoolProp;
+import com.genexus.server.services.contracts.DateTimeProp;
+import com.genexus.server.services.contracts.GuidProp;
+import com.genexus.server.services.contracts.IntProp;
+import com.genexus.server.services.contracts.LongProp;
+import com.genexus.server.services.contracts.ObjectFactory;
+import com.genexus.server.services.contracts.StringProp;
+import com.genexus.server.services.contracts.TransferProp;
+import com.genexus.server.services.contracts.XmlProp;
 import java.io.IOException;
 import java.text.MessageFormat;
 import javax.xml.datatype.XMLGregorianCalendar;
