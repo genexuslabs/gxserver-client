@@ -29,8 +29,8 @@ THE SOFTWARE.
     <artifactId>gxserver-client</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>GXserver client</name>
-    <description>Implements a client for GeneXus Server services</description>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Java client for GeneXus Server services</description>
     <url></url>
 
     <properties>
@@ -53,6 +53,28 @@ THE SOFTWARE.
             <url>https://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>jlr</id>
+            <name>José Lamas Ríos</name>
+            <email>jlr@genexus.com</email>
+            <organization>GeneXus S.A.</organization>
+            <organizationUrl>https://genexus.com/</organizationUrl>
+        </developer>
+        <developer>
+            <id>agutierrezgx</id>
+            <name>Antonella Gutierrez</name>
+            <organization>GeneXus S.A.</organization>
+            <organizationUrl>https://genexus.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/agutierrezgx/GXServerClient.git</connection>
+        <developerConnection>scm:git:git@github.com:agutierrezgx/GXServerClient.git</developerConnection>
+        <url>https://github.com/agutierrezgx/GXServerClient</url>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -145,11 +167,37 @@ THE SOFTWARE.
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
                 <configuration>
-                    <excludePackageNames>com.genexus.server.services</excludePackageNames>
+                    <excludePackageNames>com.genexus.server.services.*</excludePackageNames>
                 </configuration>
-                <version>3.8.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -244,4 +292,47 @@ THE SOFTWARE.
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>ci-cd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Prevent gpg from using pinentry programs. Fixes: gpg: signing 
+                                        failed: Inappropriate ioctl for device -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
 </project>
