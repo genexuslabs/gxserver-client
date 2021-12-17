@@ -29,8 +29,8 @@ THE SOFTWARE.
     <artifactId>gxserver-client</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>GXserver client</name>
-    <description>Implements a client for GeneXus Server services</description>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Java client for GeneXus Server services</description>
     <url></url>
 
     <properties>
@@ -53,6 +53,28 @@ THE SOFTWARE.
             <url>https://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>jlr</id>
+            <name>José Lamas Ríos</name>
+            <email>jlr@genexus.com</email>
+            <organization>GeneXus S.A.</organization>
+            <organizationUrl>https://genexus.com/</organizationUrl>
+        </developer>
+        <developer>
+            <id>agutierrezgx</id>
+            <name>Antonella Gutierrez</name>
+            <organization>GeneXus S.A.</organization>
+            <organizationUrl>https://genexus.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/agutierrezgx/GXServerClient.git</connection>
+        <developerConnection>scm:git:git@github.com:agutierrezgx/GXServerClient.git</developerConnection>
+        <url>https://github.com/agutierrezgx/GXServerClient</url>
+    </scm>
 
     <dependencies>
         <dependency>
