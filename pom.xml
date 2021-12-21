@@ -98,6 +98,7 @@ THE SOFTWARE.
             <groupId>com.sun.xml.xws</groupId>
             <artifactId>xws-security</artifactId>
             <version>3.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
@@ -334,4 +335,14 @@ THE SOFTWARE.
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <!-- Needed for com.sun.xml.wss:xws-security:3.0 pom -->
+            <id>repo.jenkins-ci.org</id>
+            <name>Jenkins Public Repository</name>
+            <url>https://repo.jenkins-ci.org/public/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 </project>
