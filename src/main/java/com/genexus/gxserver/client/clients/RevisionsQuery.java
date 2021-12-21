@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients;
+package com.genexus.gxserver.client.clients;
 
-import com.genexus.helpers.UTCDateTimeFormatter;
-import com.genexus.helpers.XmlHelper;
-import com.genexus.server.info.RevisionInfo;
-import com.genexus.server.info.RevisionList;
-import com.genexus.server.info.VersionInfo;
+import com.genexus.gxserver.client.helpers.UTCDateTimeFormatter;
+import com.genexus.gxserver.client.helpers.XmlHelper;
+import com.genexus.gxserver.client.info.RevisionInfo;
+import com.genexus.gxserver.client.info.RevisionList;
+import com.genexus.gxserver.client.info.VersionInfo;
 import jakarta.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileNotFoundException;

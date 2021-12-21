@@ -21,32 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.helpers;
+package com.genexus.gxserver.client.info;
 
-import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author jlr
- *
- * For TeamWorkService2.GetVersions() GXserver exports boolean elements only if
- * they are true, and it uses "True" (title case) if that's the case.
- *
- * This adapter checks string values ignoring case (so as to recognize "True")
- * and converts to null when the value is false (so as to avoid writing it).
- *
- * This makes sure the roundtrip (converting the received XML string to Document
- * and back to string) returns the same result.
  */
-public class TrueOrNothingBooleanAdapter extends XmlAdapter<String, Boolean> {
+@XmlRootElement(name = "Revisions")
+@XmlAccessorType(XmlAccessType.NONE)
+public class RevisionList extends ArrayList<RevisionInfo> {
 
-    @Override
-    public Boolean unmarshal(String strValue) throws Exception {
-        return strValue.compareToIgnoreCase("true") == 0;
-    }
+    private static final long serialVersionUID = 1L;
 
-    @Override
-    public String marshal(Boolean booleanValue) throws Exception {
-        return booleanValue ? "True" : null;
+    @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
+    @XmlElement(name = "Revision")
+    private List<RevisionInfo> getRevisions() {
+        return this;
     }
 }

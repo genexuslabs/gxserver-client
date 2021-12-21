@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients.common;
+package com.genexus.gxserver.client.clients.common;
 
 import com.sun.xml.wss.impl.MessageConstants;
 import com.sun.xml.wss.impl.config.ConfigurationConstants;

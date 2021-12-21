@@ -21,17 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients.common;
+package com.genexus.gxserver.client.clients.common;
 
-import com.genexus.server.services.contracts.BoolProp;
-import com.genexus.server.services.contracts.DateTimeProp;
-import com.genexus.server.services.contracts.GuidProp;
-import com.genexus.server.services.contracts.IntProp;
-import com.genexus.server.services.contracts.LongProp;
-import com.genexus.server.services.contracts.ObjectFactory;
-import com.genexus.server.services.contracts.StringProp;
-import com.genexus.server.services.contracts.TransferProp;
-import com.genexus.server.services.contracts.XmlProp;
+import com.genexus.gxserver.client.services.contracts.BoolProp;
+import com.genexus.gxserver.client.services.contracts.DateTimeProp;
+import com.genexus.gxserver.client.services.contracts.GuidProp;
+import com.genexus.gxserver.client.services.contracts.IntProp;
+import com.genexus.gxserver.client.services.contracts.LongProp;
+import com.genexus.gxserver.client.services.contracts.ObjectFactory;
+import com.genexus.gxserver.client.services.contracts.StringProp;
+import com.genexus.gxserver.client.services.contracts.TransferProp;
+import com.genexus.gxserver.client.services.contracts.XmlProp;
 import java.io.IOException;
 import java.text.MessageFormat;
 import javax.xml.datatype.XMLGregorianCalendar;

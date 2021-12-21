@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients;
+package com.genexus.gxserver.client.clients;
 
-import com.genexus.server.clients.common.NaiveSSLHelper;
-import com.genexus.server.clients.common.ServiceData;
-import com.genexus.server.clients.common.ServiceInfo;
+import com.genexus.gxserver.client.clients.common.NaiveSSLHelper;
+import com.genexus.gxserver.client.clients.common.ServiceData;
+import com.genexus.gxserver.client.clients.common.ServiceInfo;
 import jakarta.xml.ws.BindingProvider;
 import java.io.IOException;
 import java.net.HttpURLConnection;

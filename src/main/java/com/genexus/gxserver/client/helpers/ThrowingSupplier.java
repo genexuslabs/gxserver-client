@@ -21,34 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients.common;
-
-import com.genexus.helpers.ThrowingSupplier;
+package com.genexus.gxserver.client.helpers;
 
 /**
- * Defines a critical section during which the context class loader is set to
- * one obtained from the current class and thus being able to find classes
- * contained in this package or those on which it depends.
- *
- * This fixes class loading errors when accessing web services using JAX-WS.
- * More info about the problem at
- * https://www.eclipse.org/forums/index.php/t/266362/
  *
  * @author jlr
  */
-public class WithLocalContextClassLoader {
-
-    public static <T, E extends Throwable> T call(ThrowingSupplier<T, E> s) throws E {
-        T result = null;
-
-        ClassLoader tccl = Thread.currentThread().getContextClassLoader();
-        Thread.currentThread().setContextClassLoader(WithLocalContextClassLoader.class.getClassLoader());
-        try {
-            result = s.get();
-        } finally {
-            Thread.currentThread().setContextClassLoader(tccl);
-        }
-
-        return result;
-    }
+/**
+ * Represents a function that accepts zero arguments and returns some value.
+ * Function might throw a checked exception instance.
+ *
+ * @param <T> function output type
+ * @param <E> exception type
+ * @author jlr
+ */
+@FunctionalInterface
+public interface ThrowingSupplier<T extends Object, E extends Throwable> {
+    T get() throws E;
 }

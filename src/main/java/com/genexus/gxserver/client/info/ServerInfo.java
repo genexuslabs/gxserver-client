@@ -21,29 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.info;
+package com.genexus.gxserver.client.info;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author jlr
  */
-@XmlRootElement(name = "KnowledgeBases")
-@XmlAccessorType(XmlAccessType.NONE)
-public class KBList extends ArrayList<KBInfo> {
+public class ServerInfo {
 
-    private static final long serialVersionUID = 1L;
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public String serverVersion = "";
 
-    @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
-    @XmlElement(name = "KB")
-    private List<KBInfo> getKBs() {
-        return this;
-    }
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean isAvailable = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean isSecure = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean supportsTokenAuthentication = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsGXtest = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsCustomBinding = false;
 }

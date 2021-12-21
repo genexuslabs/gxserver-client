@@ -21,29 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.info;
+package com.genexus.gxserver.client.helpers;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  *
  * @author jlr
  */
-@XmlRootElement(name = "Versions")
-@XmlAccessorType(XmlAccessType.NONE)
-public class VersionList extends ArrayList<VersionInfo> {
+public class UTCDateTimeFormatter {
 
-    private static final long serialVersionUID = 1L;
+    public static DateFormat getXmlResultFormat() {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ROOT);
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df;
+    }
 
-    @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
-    @XmlElement(name = "Version")
-    private List<VersionInfo> getVersions() {
-        return this;
+    public static DateFormat getQueryFormat() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT);
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df;
     }
 }

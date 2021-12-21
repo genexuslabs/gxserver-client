@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2021 GeneXus S.A..
+ * Copyright 2020 GeneXus S.A..
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.helpers;
+package com.genexus.gxserver.client.helpers;
+
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  *
  * @author jlr
- */
-/**
- * Represents a function that accepts zero arguments and returns some value.
- * Function might throw a checked exception instance.
  *
- * @param <T> function output type
- * @param <E> exception type
- * @author jlr
+ * For TeamWorkService2.GetVersions() GXserver exports ParentId only if if it's
+ * non zero.
+ *
+ * This adapter converts to null when the value is not positive (so as to avoid
+ * writing it).
+ *
+ * This makes sure the roundtrip (converting the received XML string to Document
+ * and back to string) returns the same result.
  */
-@FunctionalInterface
-public interface ThrowingSupplier<T extends Object, E extends Throwable> {
-    T get() throws E;
+public class PositiveOrNothingIntegerAdapter extends XmlAdapter<String, Integer> {
+    @Override
+    public Integer unmarshal(String strValue) throws Exception {
+        return Integer.parseInt(strValue);
+    }
+
+    @Override
+    public String marshal(Integer intValue) throws Exception {
+        return (intValue > 0) ? intValue.toString() : null;
+    }
 }
