@@ -21,31 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.helpers;
+package com.genexus.gxserver.client.info;
 
-import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author jlr
- *
- * For TeamWorkService2.GetVersions() GXserver exports ParentId only if if it's
- * non zero.
- *
- * This adapter converts to null when the value is not positive (so as to avoid
- * writing it).
- *
- * This makes sure the roundtrip (converting the received XML string to Document
- * and back to string) returns the same result.
  */
-public class PositiveOrNothingIntegerAdapter extends XmlAdapter<String, Integer> {
-    @Override
-    public Integer unmarshal(String strValue) throws Exception {
-        return Integer.parseInt(strValue);
-    }
+@XmlRootElement(name = "Versions")
+@XmlAccessorType(XmlAccessType.NONE)
+public class VersionList extends ArrayList<VersionInfo> {
 
-    @Override
-    public String marshal(Integer intValue) throws Exception {
-        return (intValue > 0) ? intValue.toString() : null;
+    private static final long serialVersionUID = 1L;
+
+    @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
+    @XmlElement(name = "Version")
+    private List<VersionInfo> getVersions() {
+        return this;
     }
 }

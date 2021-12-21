@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.info;
+package com.genexus.gxserver.client.info;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -35,15 +35,15 @@ import java.util.List;
  *
  * @author jlr
  */
-@XmlRootElement(name = "Revisions")
+@XmlRootElement(name = "KnowledgeBases")
 @XmlAccessorType(XmlAccessType.NONE)
-public class RevisionList extends ArrayList<RevisionInfo> {
+public class KBList extends ArrayList<KBInfo> {
 
     private static final long serialVersionUID = 1L;
 
     @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
-    @XmlElement(name = "Revision")
-    private List<RevisionInfo> getRevisions() {
+    @XmlElement(name = "KB")
+    private List<KBInfo> getKBs() {
         return this;
     }
 }

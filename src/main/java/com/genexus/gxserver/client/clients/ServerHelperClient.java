@@ -21,22 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.clients;
+package com.genexus.gxserver.client.clients;
 
-import com.genexus.server.clients.common.ServiceData;
-import com.genexus.server.clients.common.ServiceInfo;
-import com.genexus.server.clients.common.TransferPropConstants;
-import com.genexus.server.clients.common.TransferPropHelper;
-import com.genexus.server.clients.common.WithLocalContextClassLoader;
-import com.genexus.server.info.ServerInfo;
-import com.genexus.server.services.contracts.ArrayOfServerMessage;
-import com.genexus.server.services.contracts.ArrayOfTransferProp;
-import com.genexus.server.services.contracts.TransferProp;
-import com.genexus.server.services.helper.IServerHelper;
-import com.genexus.server.services.helper.IServerHelperIsServerAliveGXServerExceptionFaultFaultMessage;
-import com.genexus.server.services.helper.IServerHelperServerInfoGXServerExceptionFaultFaultMessage;
-import com.genexus.server.services.helper.ServerHelper;
-import com.genexus.server.services.helper.SimpleTransfer;
+import com.genexus.gxserver.client.clients.common.ServiceData;
+import com.genexus.gxserver.client.clients.common.ServiceInfo;
+import com.genexus.gxserver.client.clients.common.TransferPropConstants;
+import com.genexus.gxserver.client.clients.common.TransferPropHelper;
+import com.genexus.gxserver.client.clients.common.WithLocalContextClassLoader;
+import com.genexus.gxserver.client.info.ServerInfo;
+import com.genexus.gxserver.client.services.contracts.ArrayOfServerMessage;
+import com.genexus.gxserver.client.services.contracts.ArrayOfTransferProp;
+import com.genexus.gxserver.client.services.contracts.TransferProp;
+import com.genexus.gxserver.client.services.helper.IServerHelper;
+import com.genexus.gxserver.client.services.helper.IServerHelperIsServerAliveGXServerExceptionFaultFaultMessage;
+import com.genexus.gxserver.client.services.helper.IServerHelperServerInfoGXServerExceptionFaultFaultMessage;
+import com.genexus.gxserver.client.services.helper.ServerHelper;
+import com.genexus.gxserver.client.services.helper.SimpleTransfer;
 import jakarta.xml.ws.BindingProvider;
 import jakarta.xml.ws.Holder;
 import java.io.IOException;

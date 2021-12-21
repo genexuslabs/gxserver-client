@@ -21,28 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.helpers;
+package com.genexus.gxserver.client.clients.common;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.TimeZone;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  *
  * @author jlr
  */
-public class UTCDateTimeFormatter {
+public class ServiceInfo {
 
-    public static DateFormat getXmlResultFormat() {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ROOT);
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df;
-    }
+    public final String secureIdentifier;
+    public final String nonSecureIdentifier;
 
-    public static DateFormat getQueryFormat() {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT);
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df;
+    @SuppressFBWarnings("URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD")
+    public final String secureBindingName;
+
+    @SuppressFBWarnings("URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD")
+    public final String nonSecureBindingName;
+
+    public ServiceInfo(String secureIdentifier, String nonSecureIdentifier, String secureBindingName, String nonSecureBindingName) {
+        this.secureIdentifier = secureIdentifier;
+        this.nonSecureIdentifier = nonSecureIdentifier;
+        this.secureBindingName = secureBindingName;
+        this.nonSecureBindingName = nonSecureBindingName;
     }
 }

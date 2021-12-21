@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.info;
+package com.genexus.gxserver.client.info;
 
-import com.genexus.helpers.PositiveOrNothingIntegerAdapter;
-import com.genexus.helpers.TrueOrNothingBooleanAdapter;
+import com.genexus.gxserver.client.helpers.PositiveOrNothingIntegerAdapter;
+import com.genexus.gxserver.client.helpers.TrueOrNothingBooleanAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;

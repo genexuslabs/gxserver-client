@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.helpers;
+package com.genexus.gxserver.client.helpers;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.DateFormat;

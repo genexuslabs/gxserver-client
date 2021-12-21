@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.genexus.server.info;
+package com.genexus.gxserver.client.info;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
-import com.genexus.helpers.XmlHelper;
+import com.genexus.gxserver.client.helpers.XmlHelper;
 import static org.junit.Assert.assertEquals;
 
 /**
