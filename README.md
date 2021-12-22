@@ -93,7 +93,7 @@ ArtifactId: gxserver-client
   }
 ```
 
-   **Note:** See [RevsionsQuery](src/main/java/com/genexus/gxserver/client/clients/RevisionsQuery.java) for other construction options.
+   **Note:** See [RevisionsQuery](src/main/java/com/genexus/gxserver/client/clients/RevisionsQuery.java) for other construction options.
 
 5. Get paginated version revisions and their actions
 
