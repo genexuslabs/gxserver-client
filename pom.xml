@@ -148,7 +148,6 @@ THE SOFTWARE.
                 <targetPath>META-INF</targetPath>
                 <directory>src</directory>
                 <includes>
-                    <include>jax-ws-catalog.xml</include>
                     <include>wsdl/**</include>
                 </includes>
             </resource>
@@ -251,7 +250,6 @@ THE SOFTWARE.
                     <xnocompile>true</xnocompile>
                     <verbose>true</verbose>
                     <extension>true</extension>
-                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
                 </configuration>
             </plugin>
             <plugin>
