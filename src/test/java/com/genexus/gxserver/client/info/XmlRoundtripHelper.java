@@ -23,9 +23,9 @@
  */
 package com.genexus.gxserver.client.info;
 
+import com.genexus.gxserver.client.helpers.XmlHelper;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
-import com.genexus.gxserver.client.helpers.XmlHelper;
 import static org.junit.Assert.assertEquals;
 
 /**

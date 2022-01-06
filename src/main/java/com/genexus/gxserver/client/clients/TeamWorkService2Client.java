@@ -23,12 +23,12 @@
  */
 package com.genexus.gxserver.client.clients;
 
-import com.genexus.gxserver.client.helpers.XmlHelper;
 import com.genexus.gxserver.client.clients.common.ServiceData;
 import com.genexus.gxserver.client.clients.common.ServiceInfo;
 import com.genexus.gxserver.client.clients.common.TransferPropConstants;
 import com.genexus.gxserver.client.clients.common.TransferPropHelper;
 import com.genexus.gxserver.client.clients.common.WithLocalContextClassLoader;
+import com.genexus.gxserver.client.helpers.XmlHelper;
 import com.genexus.gxserver.client.info.KBList;
 import com.genexus.gxserver.client.info.RevisionList;
 import com.genexus.gxserver.client.info.VersionList;
