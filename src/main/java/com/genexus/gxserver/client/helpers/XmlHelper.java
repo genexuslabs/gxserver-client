@@ -23,10 +23,7 @@
  */
 package com.genexus.gxserver.client.helpers;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import com.genexus.gxserver.client.clients.common.WithLocalContextClassLoader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +36,10 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -79,7 +80,9 @@ public class XmlHelper {
     }
 
     public static <T> T parse(Document doc, Class<T> tClass) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(tClass);
+        JAXBContext jaxbContext = WithLocalContextClassLoader.call(() -> {
+            return JAXBContext.newInstance(tClass);
+        });
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         T result = (T) jaxbUnmarshaller.unmarshal(doc);
         return result;
