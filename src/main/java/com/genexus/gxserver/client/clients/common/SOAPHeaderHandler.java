@@ -23,8 +23,6 @@
  */
 package com.genexus.gxserver.client.clients.common;
 
-import com.sun.xml.wss.impl.MessageConstants;
-import com.sun.xml.wss.impl.config.ConfigurationConstants;
 import jakarta.xml.soap.SOAPElement;
 import jakarta.xml.soap.SOAPEnvelope;
 import jakarta.xml.soap.SOAPException;
@@ -53,9 +51,8 @@ public class SOAPHeaderHandler implements SOAPHandler<SOAPMessageContext> {
 
     @Override
     public Set<QName> getHeaders() {
-        final QName securityHeader = new QName(MessageConstants.WSSE_NS, MessageConstants.WSSE_SECURITY_LNAME, MessageConstants.WSSE_PREFIX);
         final HashSet<QName> headers = new HashSet<>();
-        headers.add(securityHeader);
+        headers.add(getSecurityQName());
         return headers;
     }
 
@@ -80,7 +77,7 @@ public class SOAPHeaderHandler implements SOAPHandler<SOAPMessageContext> {
                 header = envelope.addHeader();
             }
 
-            SOAPHeaderElement security = header.addHeaderElement(new QName(MessageConstants.WSSE_NS, MessageConstants.WSSE_SECURITY_LNAME, MessageConstants.WSSE_PREFIX));
+            SOAPHeaderElement security = header.addHeaderElement(getSecurityQName());
             if (!security.getMustUnderstand()) {
                 security.setMustUnderstand(true);
             }
@@ -97,34 +94,34 @@ public class SOAPHeaderHandler implements SOAPHandler<SOAPMessageContext> {
     }
 
     private void addUsernameToken(SOAPHeaderElement security, SOAPMessageContext context) throws SOAPException {
-        SOAPElement usernameToken = security.addChildElement(MessageConstants.USERNAME_TOKEN_LNAME, MessageConstants.WSSE_PREFIX);
+        SOAPElement usernameToken = security.addChildElement(WSConstants.USERNAME_TOKEN_LNAME, WSConstants.WSSE_PREFIX);
 
         usernameToken.addAttribute(
-                new QName(MessageConstants.WSU_NS, ConfigurationConstants.ID_ATTRIBUTE_NAME, MessageConstants.WSU_PREFIX),
+                new QName(WSConstants.WSU_NS, WSConstants.ID_ATTRIBUTE_NAME, WSConstants.WSU_PREFIX),
                 getNewUsernameTokenId());
 
-        SOAPElement usernameNode = usernameToken.addChildElement("Username", MessageConstants.WSSE_PREFIX);
+        SOAPElement usernameNode = usernameToken.addChildElement("Username", WSConstants.WSSE_PREFIX);
         usernameNode.addTextNode(getUsername(context));
 
-        SOAPElement passwordNode = usernameToken.addChildElement("Password", MessageConstants.WSSE_PREFIX);
-        passwordNode.setAttribute("Type", MessageConstants.PASSWORD_TEXT_NS);
+        SOAPElement passwordNode = usernameToken.addChildElement("Password", WSConstants.WSSE_PREFIX);
+        passwordNode.setAttribute("Type", WSConstants.PASSWORD_TEXT_NS);
         passwordNode.addTextNode(getPassword(context));
     }
 
     private void addTimestampToken(SOAPHeaderElement security, SOAPMessageContext context) throws SOAPException {
         SOAPElement timestampToken = security.addChildElement(
-                new QName(MessageConstants.WSU_NS, MessageConstants.TIMESTAMP_LNAME, MessageConstants.WSU_PREFIX));
+                new QName(WSConstants.WSU_NS, WSConstants.TIMESTAMP_LNAME, WSConstants.WSU_PREFIX));
 
         timestampToken.addAttribute(
-                new QName(MessageConstants.WSU_NS, ConfigurationConstants.ID_ATTRIBUTE_NAME, MessageConstants.WSU_PREFIX),
+                new QName(WSConstants.WSU_NS, WSConstants.ID_ATTRIBUTE_NAME, WSConstants.WSU_PREFIX),
                 "_0");
 
         Instant createTime = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-        SOAPElement createdNode = timestampToken.addChildElement("Created", MessageConstants.WSU_PREFIX);
+        SOAPElement createdNode = timestampToken.addChildElement("Created", WSConstants.WSU_PREFIX);
         createdNode.addTextNode(createTime.toString());
 
         Instant expireTime = createTime.plusMillis(MESSAGE_TIME_RANGE_MILLISECONDS);
-        SOAPElement expiresdNode = timestampToken.addChildElement("Expires", MessageConstants.WSU_PREFIX);
+        SOAPElement expiresdNode = timestampToken.addChildElement("Expires", WSConstants.WSU_PREFIX);
         expiresdNode.addTextNode(expireTime.toString());
     }
 
@@ -135,6 +132,10 @@ public class SOAPHeaderHandler implements SOAPHandler<SOAPMessageContext> {
 
     @Override
     public void close(MessageContext mc) {
+    }
+
+    private static QName getSecurityQName() {
+        return new QName(WSConstants.WSSE_NS, WSConstants.WSSE_SECURITY_LNAME, WSConstants.WSSE_PREFIX);
     }
 
     private Boolean getIsSecure(MessageContext context) {
