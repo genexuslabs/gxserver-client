@@ -40,6 +40,7 @@ THE SOFTWARE.
         <spotbugs.effort>Max</spotbugs.effort>
         <spotbugs.failOnError>true</spotbugs.failOnError>
         <spotbugs.threshold>Low</spotbugs.threshold>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
     </properties>
 
     <organization>
