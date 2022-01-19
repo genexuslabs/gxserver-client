@@ -75,7 +75,11 @@ public class TeamWorkService2Client extends BaseClient {
     }
 
     public TeamWorkService2Client(String serverURL, String user, String password) throws MalformedURLException {
-        super(new ServiceData(serverURL, user, password));
+        this(new ServiceData(serverURL, user, password));
+    }
+
+    public TeamWorkService2Client(ServiceData serviceData) throws MalformedURLException {
+        super(serviceData);
     }
 
     private LocalContextServiceWrapper teamWorkService2 = null;
