@@ -27,7 +27,7 @@ THE SOFTWARE.
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.genexus.gxserver</groupId>
     <artifactId>gxserver-client</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Java client for GeneXus Server services</description>
@@ -75,7 +75,7 @@ THE SOFTWARE.
         <connection>scm:git:https://github.com/genexuslabs/gxserver-client</connection>
         <developerConnection>scm:git:git@github.com:genexuslabs/gxserver-client.git</developerConnection>
         <url>https://github.com/genexuslabs/gxserver-client</url>
-      <tag>HEAD</tag>
+      <tag>gxserver-client-1.0.2</tag>
   </scm>
 
     <dependencies>
