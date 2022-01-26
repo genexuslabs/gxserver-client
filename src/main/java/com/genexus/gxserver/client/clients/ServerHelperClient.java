@@ -63,7 +63,11 @@ public class ServerHelperClient extends BaseClient {
     }
 
     public ServerHelperClient(String serverURL, String user, String password) throws MalformedURLException {
-        super(new ServiceData(serverURL, user, password));
+        this(new ServiceData(serverURL, user, password));
+    }
+
+    public ServerHelperClient(ServiceData serviceData) throws MalformedURLException {
+        super(serviceData);
     }
 
     private LocalContextServiceWrapper serverHelper = null;

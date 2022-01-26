@@ -40,6 +40,7 @@ THE SOFTWARE.
         <spotbugs.effort>Max</spotbugs.effort>
         <spotbugs.failOnError>true</spotbugs.failOnError>
         <spotbugs.threshold>Low</spotbugs.threshold>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
     </properties>
 
     <organization>
@@ -164,7 +165,7 @@ THE SOFTWARE.
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <excludePackageNames>com.genexus.server.services.*</excludePackageNames>
+                    <excludePackageNames>com.genexus.gxserver.client.services.*</excludePackageNames>
                 </configuration>
                 <executions>
                     <execution>
