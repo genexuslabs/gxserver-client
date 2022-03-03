@@ -40,8 +40,8 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -70,16 +70,17 @@ public class XmlHelper {
     }
 
     public static <T> T parse(InputSource source, Class<T> tClass) throws IOException, ParserConfigurationException, SAXException, JAXBException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        DocumentBuilder builder = DocumentBuilders.createSaferDocumentBuilder(factory -> {
+            factory.setNamespaceAware(true);
+        });
 
-        DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(source);
 
         return XmlHelper.parse(doc, tClass);
     }
 
-    public static <T> T parse(Document doc, Class<T> tClass) throws JAXBException {
+    // private so as to ensure it comes through a secure parser
+    private static <T> T parse(Document doc, Class<T> tClass) throws JAXBException {
         JAXBContext jaxbContext = WithLocalContextClassLoader.call(() -> {
             return JAXBContext.newInstance(tClass);
         });
@@ -95,7 +96,7 @@ public class XmlHelper {
     public static <T> String createXml(T instance, boolean normalized) throws JAXBException {
         StringWriter writer = new StringWriter();
         writeXml(instance, writer);
-        
+
         String xmlString = writer.toString();
         if (normalized) {
             try {
@@ -112,12 +113,12 @@ public class XmlHelper {
         OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8.name());
         writeXml(instance, writer);
     }
-    
+
     public static <T> void writeXml(T instance, Writer writer) throws JAXBException {
         Marshaller jaxbMarshaller = createMarshaller(instance);
-        jaxbMarshaller.marshal(instance, writer);        
+        jaxbMarshaller.marshal(instance, writer);
     }
-    
+
     public static <T> Marshaller createMarshaller(T instance) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(instance.getClass());
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -126,15 +127,14 @@ public class XmlHelper {
 
         return jaxbMarshaller;
     }
-    
-    public static String normalizeXmlString(String inputString) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-        dbf.setCoalescing(true);
-        dbf.setIgnoringElementContentWhitespace(true);
-        dbf.setIgnoringComments(true);
 
-        DocumentBuilder db = dbf.newDocumentBuilder();
+    public static String normalizeXmlString(String inputString) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException {
+        DocumentBuilder db = DocumentBuilders.createSaferDocumentBuilder(dbf -> {
+            dbf.setNamespaceAware(true);
+            dbf.setCoalescing(true);
+            dbf.setIgnoringElementContentWhitespace(true);
+            dbf.setIgnoringComments(true);
+        });
 
         Document doc = db.parse(new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8)));
         trimWhitespace(doc.getDocumentElement());
@@ -143,6 +143,9 @@ public class XmlHelper {
 
         StringWriter sw = new StringWriter();
         TransformerFactory tf = TransformerFactory.newInstance();
+        tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+
         Transformer transformer = tf.newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
         transformer.setOutputProperty(OutputKeys.METHOD, "xml");
