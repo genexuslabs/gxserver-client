@@ -68,8 +68,9 @@ public class ServerHelperClientTest {
         ServiceData serverData = ServerData.getServerData();
         ServerHelperClient instance = new ServerHelperClient(
                 serverData.getServerURL().toString(),
-                serverData.getUserName(),
-                serverData.getUserPassword()
+                // no user info because this service should not require authentication
+                "",
+                ""
         );
 
         assertEquals(true, instance.isServerAlive());
@@ -86,8 +87,9 @@ public class ServerHelperClientTest {
         ServiceData serverData = ServerData.getServerData();
         ServerHelperClient instance = new ServerHelperClient(
                 serverData.getServerURL().toString(),
-                serverData.getUserName(),
-                serverData.getUserPassword()
+                // no user info because this service should not require authentication
+                "",
+                ""
         );
         
         ServerInfo info = instance.getServerInfo();

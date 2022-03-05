@@ -67,7 +67,7 @@ public class ServerHelperClient extends BaseClient {
     }
 
     public ServerHelperClient(ServiceData serviceData) throws MalformedURLException {
-        super(serviceData);
+        super(serviceData, /* useNotSecure = */ true);
     }
 
     private LocalContextServiceWrapper serverHelper = null;
