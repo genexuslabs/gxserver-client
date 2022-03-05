@@ -53,9 +53,9 @@ public abstract class BaseClient {
         this(data, /* useNotSecure = */ false);
     }
 
-    BaseClient(ServiceData data, boolean preferSecure) {
+    BaseClient(ServiceData data, boolean useNotSecure) {
         this.serviceData = data;
-        this.useNotSecure = preferSecure;
+        this.useNotSecure = useNotSecure;
     }
 
     protected abstract ServiceInfo getServiceInfo();
