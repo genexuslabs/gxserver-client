@@ -62,8 +62,8 @@ public class ServerHelperClient extends BaseClient {
         return SERVER_HELPER_INFO;
     }
 
-    public ServerHelperClient(String serverURL, String user, String password) throws MalformedURLException {
-        this(new ServiceData(serverURL, user, password));
+    public ServerHelperClient(String serverURL) throws MalformedURLException {
+        this(new ServiceData(serverURL, "", ""));
     }
 
     public ServerHelperClient(ServiceData serviceData) throws MalformedURLException {
