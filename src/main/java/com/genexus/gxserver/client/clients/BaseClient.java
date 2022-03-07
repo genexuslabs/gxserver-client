@@ -47,9 +47,15 @@ public abstract class BaseClient {
     }
 
     protected final ServiceData serviceData;
+    protected final boolean useNotSecure;
 
     BaseClient(ServiceData data) {
-        serviceData = data;
+        this(data, /* useNotSecure = */ false);
+    }
+
+    BaseClient(ServiceData data, boolean useNotSecure) {
+        this.serviceData = data;
+        this.useNotSecure = useNotSecure;
     }
 
     protected abstract ServiceInfo getServiceInfo();
@@ -71,6 +77,12 @@ public abstract class BaseClient {
 
     private BindingData getBindingData(ServiceData serviceData) throws MalformedURLException {
         BindingData binding = new BindingData();
+        
+        if (useNotSecure) {
+            binding.url = getNonSecureServiceURL(serviceData.getServerURL());
+            binding.isSecure = false;
+            return binding;
+        }
 
         URL secureURL = getSecureServiceURL(serviceData.getServerURL());
         binding.url = secureURL;

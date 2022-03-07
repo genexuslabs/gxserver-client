@@ -67,9 +67,7 @@ public class ServerHelperClientTest {
 
         ServiceData serverData = ServerData.getServerData();
         ServerHelperClient instance = new ServerHelperClient(
-                serverData.getServerURL().toString(),
-                serverData.getUserName(),
-                serverData.getUserPassword()
+                serverData.getServerURL().toString()
         );
 
         assertEquals(true, instance.isServerAlive());
@@ -85,9 +83,7 @@ public class ServerHelperClientTest {
 
         ServiceData serverData = ServerData.getServerData();
         ServerHelperClient instance = new ServerHelperClient(
-                serverData.getServerURL().toString(),
-                serverData.getUserName(),
-                serverData.getUserPassword()
+                serverData.getServerURL().toString()
         );
         
         ServerInfo info = instance.getServerInfo();
