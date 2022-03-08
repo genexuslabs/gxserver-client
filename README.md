@@ -4,8 +4,8 @@
 ## About
 A lightweight implementation of clients to Genexus Server services (eg: get hosted kbs, get revisions, etc.).
 
-Group Id: com.genexus.gxserver
-ArtifactId: gxserver-client
+**Group Id:** *com.genexus.gxserver*  
+**ArtifactId:** *gxserver-client*
 
 ## Usage examples
 
