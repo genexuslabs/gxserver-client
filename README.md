@@ -63,7 +63,7 @@ A lightweight implementation of clients to Genexus Server services (eg: get host
   cal.add(Calendar.DATE, -1);
   Date yesterday = cal.getTime();
 
-  // construct query
+  // construct query (revisions since yesterday)
   RevisionsQuery query = new RevisionsQuery(twClient, kb.name, version.name, yesterday);
 
   // iterate revisions
@@ -75,7 +75,7 @@ A lightweight implementation of clients to Genexus Server services (eg: get host
     boolean revisionIsDisabled = revision.isDisabled;
     String revisionComment = revision.comment;
 
-    // iterate revision actions
+    // iterate actions in revision
     for (ActionInfo action : revision.getActions()) {
       UUID actionObjectGuid = action.objectGuid;
       String actionObjectKey = action.objectKey;
