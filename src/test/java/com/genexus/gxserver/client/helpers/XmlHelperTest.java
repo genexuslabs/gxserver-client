@@ -102,6 +102,8 @@ public class XmlHelperTest {
                 + "  </node>\r\n"
                 + "</root>";
         String result = XmlHelper.normalizeXmlString(inputString1);
+        assertEquals(expResult.length(), result.length());
+        assertEquals(String.format("Expected %s, obtained %s", expResult, result), expResult, result);
         assertEquals(expResult, result);
 
         String inputString2 = header + inputString1;
