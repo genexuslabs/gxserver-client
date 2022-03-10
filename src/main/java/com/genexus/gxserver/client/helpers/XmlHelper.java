@@ -164,7 +164,7 @@ public class XmlHelper {
         transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
         transformer.transform(new DOMSource(doc), new StreamResult(sw));
-        return sw.toString().stripTrailing();
+        return sw.toString().trim();
     }
 
     private static void trimWhitespace(Node node) {
