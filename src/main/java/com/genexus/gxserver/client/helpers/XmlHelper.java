@@ -24,13 +24,8 @@
 package com.genexus.gxserver.client.helpers;
 
 import com.genexus.gxserver.client.clients.common.WithLocalContextClassLoader;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,6 +36,10 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -63,21 +62,14 @@ import org.xml.sax.SAXException;
  */
 public class XmlHelper {
 
-    public static <T> T parse(File file, Class<T> tClass) throws FileNotFoundException, IOException, ParserConfigurationException, SAXException, JAXBException {
-        try (FileInputStream fileStream = new FileInputStream(file)) {
-            return parse(fileStream, tClass);
-        }
-    }
-
     public static <T> T parse(InputStream stream, Class<T> tClass) throws IOException, ParserConfigurationException, SAXException, JAXBException {
-        try (Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8.name())) {
-            InputSource source = new InputSource(reader);
+        Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8.name());
+        InputSource source = new InputSource(reader);
 
-            return XmlHelper.parse(source, tClass);
-        }
+        return XmlHelper.parse(source, tClass);
     }
 
-    private static <T> T parse(InputSource source, Class<T> tClass) throws IOException, ParserConfigurationException, SAXException, JAXBException {
+    public static <T> T parse(InputSource source, Class<T> tClass) throws IOException, ParserConfigurationException, SAXException, JAXBException {
         DocumentBuilder builder = DocumentBuilders.createSaferDocumentBuilder(factory -> {
             factory.setNamespaceAware(true);
         });
@@ -117,11 +109,9 @@ public class XmlHelper {
     }
 
     public static <T> void writeXml(T instance, File file) throws FileNotFoundException, IOException, JAXBException {
-        try (
-                FileOutputStream outputStream = new FileOutputStream(file);
-                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8.name())) {
-            writeXml(instance, writer);
-        }
+        FileOutputStream outputStream = new FileOutputStream(file);
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8.name());
+        writeXml(instance, writer);
     }
 
     public static <T> void writeXml(T instance, Writer writer) throws JAXBException {
@@ -129,7 +119,7 @@ public class XmlHelper {
         jaxbMarshaller.marshal(instance, writer);
     }
 
-    private static <T> Marshaller createMarshaller(T instance) throws JAXBException {
+    public static <T> Marshaller createMarshaller(T instance) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(instance.getClass());
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8.name());
@@ -167,7 +157,7 @@ public class XmlHelper {
         return sw.toString();
     }
 
-    private static void trimWhitespace(Node node) {
+    public static void trimWhitespace(Node node) {
         NodeList children = node.getChildNodes();
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
