@@ -100,7 +100,7 @@ public class XmlHelperTest {
                 + "  <node>\r\n"
                 + "    <subnode/>\r\n"
                 + "  </node>\r\n"
-                + "</root>\r\n";
+                + "</root>";
         String result = XmlHelper.normalizeXmlString(inputString1);
         assertEquals(expResult, result);
 
