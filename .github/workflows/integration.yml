@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Java ${{ matrix.java }} build
+    name: Java ${{ matrix.java }} on ${{ matrix.os }} build
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
