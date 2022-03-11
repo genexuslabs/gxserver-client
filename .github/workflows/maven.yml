@@ -5,8 +5,9 @@ name: CI
 
 on:
   #push:
+  workflow_dispatch:
   workflow_run:
-    workflows: [Integration]
+    workflows: [IntegrationX]
     types: [completed]
     branches: [ main, Testing ]
 
