@@ -2,7 +2,7 @@ name: Integration
 
 on:
   push:
-    branches: [ Testing ]
+    branches-ignore: main
     
 jobs:
   build:
