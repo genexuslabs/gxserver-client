@@ -1,19 +1,15 @@
 name: Integration
 
 on:
-  # on push for any branch but main
   push:
-    #branches-ignore: main
-    
-  # on workflow call (used by CI workflow on main)
-  workflow_call:
-    
+  pull_request:
+
 jobs:
   build:
     name: Java ${{ matrix.java }} build
     runs-on: ubuntu-latest
     strategy:
-      matrix: 
+      matrix:
         java: [ 8, 11 ]
 
     steps:
@@ -29,6 +25,5 @@ jobs:
       run: mvn -B clean install
       env:
         GXSERVER_USER: ${{ secrets.GENEXUS_GENERIC_USER }}
-        GXSERVER_PASSWORD: ${{ secrets.GENEXUS_GENERIC_PASSWORD }}    
-
+        GXSERVER_PASSWORD: ${{ secrets.GENEXUS_GENERIC_PASSWORD }}
 
