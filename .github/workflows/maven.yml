@@ -4,14 +4,18 @@
 name: CI
 
 on:
-  push:
+  #push:
+  workflow_run:
+    workflows: [Integration]
+    types: [completed]
     branches: [ main, Testing ]
 
 jobs:
-  integration:
-    uses: ./.github/workflows/integration.yml
+  #integration:
+    #uses: ./.github/workflows/integration.yml
 
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
     runs-on: ubuntu-latest
     steps:
     - name: checkout
