@@ -27,6 +27,7 @@ import com.genexus.gxserver.client.info.RevisionList;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -77,6 +78,11 @@ public class XmlHelperTest {
         Files.delete(tempPath2);
     }
 
+    private static final String EOL = System.lineSeparator();
+    private static final String EOL_LINUX = "\n";
+    private static final String EOL_WINDOWS = "\r\n";
+    private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+
     /**
      * Test of normalizeXmlString method, of class XmlHelper.
      */
@@ -84,34 +90,76 @@ public class XmlHelperTest {
     public void testNormalizeXmlString() throws Exception {
         System.out.println("normalizeXmlString");
 
-        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+        TestCases testCases = CreateNormalizeTestCases();
+        for (int i = 0; i < testCases.size(); i++) {
+            String expectedResult = testCases.getExpectedOutput(i);
+            String result = XmlHelper.normalizeXmlString(testCases.getInput(i));
 
-        String inputString1 = "<root>  <node>  </node>  <node att1=\"att\">\r\n"
-                + "</node>\r\n"
-                + "       <node att1= \"att\" >\r\n"
-                + "</node> <node>      <subnode> </subnode>\r\n"
+            assertEquals(expectedResult.length(), result.length());
+            assertEquals(String.format("Expected %s, obtained %s", expectedResult, result), expectedResult, result);
+            assertEquals(expectedResult, result);
+        }
+    }
+
+    private TestCases CreateNormalizeTestCases() {
+        TestCases cases = new TestCases();
+
+        String baseCaseInput = "<root>  <node>  </node>  <node att1=\"att\">" + EOL
+                + "</node>" + EOL_LINUX
+                + "       <node att1= \"att\" >" + EOL_WINDOWS
+                + "</node> <node>      <subnode> </subnode>" + EOL
                 + "</node></root>";
 
-        String expResult = header
-                + "<root>\r\n"
-                + "  <node/>\r\n"
-                + "  <node att1=\"att\"/>\r\n"
-                + "  <node att1=\"att\"/>\r\n"
-                + "  <node>\r\n"
-                + "    <subnode/>\r\n"
-                + "  </node>\r\n"
+        String normalized = XML_HEADER + "<root>" + EOL
+                + "  <node/>" + EOL
+                + "  <node att1=\"att\"/>" + EOL
+                + "  <node att1=\"att\"/>" + EOL
+                + "  <node>" + EOL
+                + "    <subnode/>" + EOL
+                + "  </node>" + EOL
                 + "</root>";
-        String result = XmlHelper.normalizeXmlString(inputString1);
-        assertEquals(expResult.length(), result.length());
-        assertEquals(String.format("Expected %s, obtained %s", expResult, result), expResult, result);
-        assertEquals(expResult, result);
 
-        String inputString2 = header + inputString1;
-        result = XmlHelper.normalizeXmlString(inputString2);
-        assertEquals(expResult, result);
+        cases.addCase(baseCaseInput, normalized);
 
-        String inputString3 = header + "\r\n" + inputString1;
-        result = XmlHelper.normalizeXmlString(inputString3);
-        assertEquals(expResult, result);
+        cases.addCase(XML_HEADER + baseCaseInput, normalized);
+        cases.addCase(XML_HEADER + EOL_LINUX + baseCaseInput, normalized);
+        cases.addCase(XML_HEADER + EOL_WINDOWS + baseCaseInput, normalized);
+
+        cases.addCase(XML_HEADER + baseCaseInput + EOL_LINUX, normalized);
+        cases.addCase(XML_HEADER + EOL_LINUX + baseCaseInput + EOL_LINUX, normalized);
+        cases.addCase(XML_HEADER + EOL_WINDOWS + baseCaseInput + EOL_LINUX, normalized);
+
+        cases.addCase(XML_HEADER + baseCaseInput + EOL_WINDOWS, normalized);
+        cases.addCase(XML_HEADER + EOL_LINUX + baseCaseInput + EOL_WINDOWS, normalized);
+        cases.addCase(XML_HEADER + EOL_WINDOWS + baseCaseInput + EOL_WINDOWS, normalized);
+
+        return cases;
+    }
+
+    private class TestCases {
+
+        public final ArrayList<String> inputs = new ArrayList<>();
+        public final ArrayList<String> expectedOutputs = new ArrayList<>();
+
+        public void addCase(String input) {
+            addCase(input, input);
+        }
+
+        public void addCase(String input, String output) {
+            inputs.add(input);
+            expectedOutputs.add(output);
+        }
+
+        public int size() {
+            return inputs.size();
+        }
+
+        public String getInput(int index) {
+            return inputs.get(index);
+        }
+
+        public String getExpectedOutput(int index) {
+            return expectedOutputs.get(index);
+        }
     }
 }
