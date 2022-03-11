@@ -7,7 +7,7 @@ on:
   #push:
   workflow_dispatch:
   workflow_run:
-    workflows: [IntegrationX]
+    workflows: ["Integration"]
     types: [completed]
     branches: [ main, Testing ]
 
