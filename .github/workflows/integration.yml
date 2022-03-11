@@ -3,7 +3,7 @@ name: Integration
 on:
   # on push for any branch but main
   push:
-    branches-ignore: main
+    #branches-ignore: main
     
   # on workflow call (used by CI workflow on main)
   workflow_call:
