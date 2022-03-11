@@ -5,11 +5,11 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, Testing ]
 
 jobs:
   integration:
-    uses: ./.github/workflows.integration.yml
+    uses: ./.github/workflows/integration.yml
 
   build:
     runs-on: ubuntu-latest
