@@ -4,15 +4,19 @@
 name: CI
 
 on:
-
   push:
-    branches: [ main, Testing ]
+    branches: [ main ]
 
 jobs:
+  integration:
+    uses: ./.github/workflows.integration.yml
+
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+
     - name: Set up Maven Central Repository
       uses: actions/setup-java@v1
       with:
@@ -22,6 +26,7 @@ jobs:
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.MAVEN_GPG_BUILDER_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
     - name: Deploy with Maven
       run: mvn -B clean deploy -Pci-cd
       env:
