@@ -1,22 +1,19 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# This workflow publish to Maven Central in case of a succesfull run of the
+# Integration workflow
 
 name: Publish
 
 on:
-  #push:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Integration"]
+    workflows: [Integration]
     types: [completed]
-    branches: [ main, Testing ]
+    branches: [ main ]
 
 jobs:
-  #integration:
-    #uses: ./.github/workflows/integration.yml
 
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
     - name: checkout
@@ -40,3 +37,4 @@ jobs:
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_BUILDER_PASSPHRASE }}
         GXSERVER_USER: ${{ secrets.GENEXUS_GENERIC_USER }}
         GXSERVER_PASSWORD: ${{ secrets.GENEXUS_GENERIC_PASSWORD }}
+
