@@ -7,10 +7,11 @@ on:
 jobs:
   build:
     name: Java ${{ matrix.java }} build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
         java: [ 8, 11 ]
+        os: [ linux, windows, macos ]
 
     steps:
     - name: Checkout
