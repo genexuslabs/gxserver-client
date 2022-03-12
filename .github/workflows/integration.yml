@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         java: [ 8, 11 ]
-        os: [ linux, windows, macos ]
+        os: [ linux, windows ]
 
     steps:
     - name: Checkout
