@@ -69,7 +69,7 @@ public class TeamWorkService2ClientTest {
      */
     @Test
     public void testGetRevisions() throws Exception {
-        ServiceData serverData = ServerData.getServerData();
+        ServiceData serverData = ServerData.getServerDatauserAndPassword();
         TeamWorkService2Client twClient = new TeamWorkService2Client(
                 serverData.getServerURL().toString(),
                 serverData.getUserName(),
@@ -79,7 +79,7 @@ public class TeamWorkService2ClientTest {
         // check there are KBs
         KBList kbs = twClient.getHostedKBs();
         assertNotNull(kbs);
-        assertTrue(kbs.size() > 0);
+        assertTrue(!kbs.isEmpty());
         
         // take some KB
         KBInfo kb = kbs.get(kbs.size()/2);
@@ -87,7 +87,7 @@ public class TeamWorkService2ClientTest {
         // check there are versions in it
         VersionList versions = twClient.getVersions(kb.name);
         assertNotNull(versions);
-        assertTrue(versions.size() > 0);
+        assertTrue(!versions.isEmpty());
         
         // take first version
         VersionInfo version = versions.get(0);
@@ -113,12 +113,71 @@ public class TeamWorkService2ClientTest {
             for (ActionInfo action : revision.getActions()) {
                 assertNotEquals(new UUID(0L, 0L), action.objectGuid);
                 assertFalse(action.objectKey.isEmpty());
-                assertFalse(action.objectType.isEmpty());
+                //assertFalse(action.objectType.isEmpty());
                 assertFalse(action.objectName.isEmpty());
                 assertNotNull(action.objectDescription);
                 assertNotNull(action.actionType);
                 assertFalse(action.userName.isEmpty());
-                assertNotNull(action.editedTimestamp);
+                //assertNotNull(action.editedTimestamp);
+            }
+        }
+    }
+    
+    /**
+     * Test of getHostedKBs, getVersions and getRevisions methods, of class TeamWorkService2Client.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testGetRevisionsUsingToken() throws Exception {
+        ServiceData serverData = ServerData.getServerDataToken();
+        TeamWorkService2Client twClient = new TeamWorkService2Client(
+                serverData.getServerURL().toString(),
+                serverData.getToken()
+        );
+        
+        // check there are KBs
+        KBList kbs = twClient.getHostedKBs();
+        assertNotNull(kbs);
+        assertTrue(!kbs.isEmpty());
+        
+        // take some KB
+        KBInfo kb = kbs.get(kbs.size()/2);
+        
+        // check there are versions in it
+        VersionList versions = twClient.getVersions(kb.name);
+        assertNotNull(versions);
+        assertTrue(!versions.isEmpty());
+        
+        // take first version
+        VersionInfo version = versions.get(0);
+        
+        // iterate revisions and actions
+        RevisionsQuery query = new RevisionsQuery(
+            twClient,
+            kb.name,
+            version.name
+        );
+        
+        assert(query.iterator().hasNext());
+        for (RevisionInfo revision : query) {
+            assertTrue(revision.id >= 0);
+            assertNotNull(revision.guid);
+            assertNotNull(revision.date);
+            assertFalse(revision.author.isEmpty());
+            assertNotEquals(new UUID(0L, 0L), revision.guid);
+            assertFalse(revision.author.isEmpty());
+            assertFalse(revision.comment.isEmpty());
+            assertNotNull(revision.date);
+            
+            for (ActionInfo action : revision.getActions()) {
+                assertNotEquals(new UUID(0L, 0L), action.objectGuid);
+                assertFalse(action.objectKey.isEmpty());
+                //assertFalse(action.objectType.isEmpty());
+                assertFalse(action.objectName.isEmpty());
+                assertNotNull(action.objectDescription);
+                assertNotNull(action.actionType);
+                assertFalse(action.userName.isEmpty());
+                //assertNotNull(action.editedTimestamp);
             }
         }
     }

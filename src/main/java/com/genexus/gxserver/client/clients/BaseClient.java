@@ -27,10 +27,12 @@ import com.genexus.gxserver.client.clients.common.NaiveSSLHelper;
 import com.genexus.gxserver.client.clients.common.ServiceData;
 import com.genexus.gxserver.client.clients.common.ServiceInfo;
 import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.handler.MessageContext;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -111,11 +113,14 @@ public abstract class BaseClient {
     protected void addMessageContextProperties(BindingProvider bindingProvider) throws MalformedURLException {
         BindingData binding = getBindingData();
         Map requestContext = bindingProvider.getRequestContext();
-
+        
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, binding.url.toString());
 
         requestContext.put(ServiceData.GXSERVER_ISSECURE_PROPERTY, Boolean.toString(binding.isSecure));
         if (binding.isSecure) {
+            if (!serviceData.getToken().isBlank())
+                requestContext.put(MessageContext.HTTP_REQUEST_HEADERS, Collections.singletonMap("Authorization", Collections.singletonList(serviceData.getToken())));
+                
             requestContext.put(ServiceData.GXSERVER_USERNAME_PROPERTY, serviceData.getUserName());
             requestContext.put(ServiceData.GXSERVER_PASSWORD_PROPERTY, serviceData.getUserPassword());
         }

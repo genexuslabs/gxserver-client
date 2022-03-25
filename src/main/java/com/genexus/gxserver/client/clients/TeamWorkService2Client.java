@@ -77,6 +77,10 @@ public class TeamWorkService2Client extends BaseClient {
     public TeamWorkService2Client(String serverURL, String user, String password) throws MalformedURLException {
         this(new ServiceData(serverURL, user, password));
     }
+    
+    public TeamWorkService2Client(String serverURL, String token) throws MalformedURLException {
+        this(new ServiceData(serverURL, token));
+    }
 
     public TeamWorkService2Client(ServiceData serviceData) throws MalformedURLException {
         super(serviceData);
@@ -105,7 +109,7 @@ public class TeamWorkService2Client extends BaseClient {
             SimpleTransfer parameters = new SimpleTransfer();
             Holder<ArrayOfServerMessage> messages = new Holder<>(new ArrayOfServerMessage());
             Holder<ArrayOfTransferProp> properties = new Holder<>(createBasicProperties());
-
+            
             FileTransfer transfer = getTeamWorkService2().hostedKBs(parameters, messages, properties);
             byte[] bytes = transfer.getFileByteStream();
             InputStream stream = new ByteArrayInputStream(bytes);
