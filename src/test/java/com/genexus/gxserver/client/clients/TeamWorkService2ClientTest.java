@@ -113,12 +113,12 @@ public class TeamWorkService2ClientTest {
             for (ActionInfo action : revision.getActions()) {
                 assertNotEquals(new UUID(0L, 0L), action.objectGuid);
                 assertFalse(action.objectKey.isEmpty());
-                //assertFalse(action.objectType.isEmpty());
+                assertFalse(action.objectType.isEmpty());
                 assertFalse(action.objectName.isEmpty());
                 assertNotNull(action.objectDescription);
                 assertNotNull(action.actionType);
                 assertFalse(action.userName.isEmpty());
-                //assertNotNull(action.editedTimestamp);
+                assertNotNull(action.editedTimestamp);
             }
         }
     }
@@ -172,12 +172,12 @@ public class TeamWorkService2ClientTest {
             for (ActionInfo action : revision.getActions()) {
                 assertNotEquals(new UUID(0L, 0L), action.objectGuid);
                 assertFalse(action.objectKey.isEmpty());
-                //assertFalse(action.objectType.isEmpty());
+                assertFalse(action.objectType.isEmpty());
                 assertFalse(action.objectName.isEmpty());
                 assertNotNull(action.objectDescription);
                 assertNotNull(action.actionType);
                 assertFalse(action.userName.isEmpty());
-                //assertNotNull(action.editedTimestamp);
+                assertNotNull(action.editedTimestamp);
             }
         }
     }

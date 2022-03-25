@@ -34,7 +34,7 @@ public class ServerData {
     
         public static ServiceData getServerDatauserAndPassword() throws MalformedURLException {
             return new ServiceData(
-                    "https://samples.genexusserver.com/v17",
+                    "https://open.genexusserver.com/v17",
                     System.getenv("GXSERVER_USER"),
                     System.getenv("GXSERVER_PASSWORD")
                 );
@@ -42,8 +42,8 @@ public class ServerData {
         
         public static ServiceData getServerDataToken() throws MalformedURLException {
             return new ServiceData(
-                    "https://samples.genexusserver.com/v17",
-                    "a9b30c7d-888a-45fa-9493-3f9aaadedae0!74093e1c82b9de1d1c2d9d88dfe6ad49b08a2c7609ab3717043146627ac19673600ba9c190dd36"
+                    "https://open.genexusserver.com/v17",
+                    "a9b30c7d-888a-45fa-9493-3f9aaadedae0!e874ed2c1dc477876adf73a2e7083ce9fc47441afcb38005315c6013dcccc79c06a320b1dbb2f4"
                 );
         }
 }
