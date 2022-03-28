@@ -30,6 +30,7 @@ import com.genexus.gxserver.client.info.KBList;
 import com.genexus.gxserver.client.info.RevisionInfo;
 import com.genexus.gxserver.client.info.VersionInfo;
 import com.genexus.gxserver.client.info.VersionList;
+import java.io.IOException;
 import java.util.UUID;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,28 +44,30 @@ import org.junit.Test;
  * @author jlr
  */
 public class TeamWorkService2ClientTest {
-    
-    public TeamWorkService2ClientTest() {
-    }
-    
+
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    public TeamWorkService2ClientTest() {
+    }
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getHostedKBs, getVersions and getRevisions methods, of class TeamWorkService2Client.
+     * Test of getHostedKBs, getVersions and getRevisions methods, of class
+     * TeamWorkService2Client.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -75,56 +78,14 @@ public class TeamWorkService2ClientTest {
                 serverData.getUserName(),
                 serverData.getUserPassword()
         );
-        
-        // check there are KBs
-        KBList kbs = twClient.getHostedKBs();
-        assertNotNull(kbs);
-        assertTrue(!kbs.isEmpty());
-        
-        // take some KB
-        KBInfo kb = kbs.get(kbs.size()/2);
-        
-        // check there are versions in it
-        VersionList versions = twClient.getVersions(kb.name);
-        assertNotNull(versions);
-        assertTrue(!versions.isEmpty());
-        
-        // take first version
-        VersionInfo version = versions.get(0);
-        
-        // iterate revisions and actions
-        RevisionsQuery query = new RevisionsQuery(
-            twClient,
-            kb.name,
-            version.name
-        );
-        
-        assert(query.iterator().hasNext());
-        for (RevisionInfo revision : query) {
-            assertTrue(revision.id >= 0);
-            assertNotNull(revision.guid);
-            assertNotNull(revision.date);
-            assertFalse(revision.author.isEmpty());
-            assertNotEquals(new UUID(0L, 0L), revision.guid);
-            assertFalse(revision.author.isEmpty());
-            assertFalse(revision.comment.isEmpty());
-            assertNotNull(revision.date);
-            
-            for (ActionInfo action : revision.getActions()) {
-                assertNotEquals(new UUID(0L, 0L), action.objectGuid);
-                assertFalse(action.objectKey.isEmpty());
-                assertFalse(action.objectType.isEmpty());
-                assertFalse(action.objectName.isEmpty());
-                assertNotNull(action.objectDescription);
-                assertNotNull(action.actionType);
-                assertFalse(action.userName.isEmpty());
-                assertNotNull(action.editedTimestamp);
-            }
-        }
+
+        CheckServerAccess(twClient);
     }
-    
+
     /**
-     * Test of getHostedKBs, getVersions and getRevisions methods, of class TeamWorkService2Client.
+     * Test of getHostedKBs, getVersions and getRevisions methods, of class
+     * TeamWorkService2Client.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -134,33 +95,37 @@ public class TeamWorkService2ClientTest {
                 serverData.getServerURL().toString(),
                 serverData.getToken()
         );
-        
+
+        CheckServerAccess(twClient);
+    }
+
+    private void CheckServerAccess(TeamWorkService2Client twClient) throws IOException {
         // check there are KBs
         KBList kbs = twClient.getHostedKBs();
         assertNotNull(kbs);
         assertTrue(!kbs.isEmpty());
-        
+
         // take some KB
-        KBInfo kb = kbs.get(kbs.size()/2);
-        
+        KBInfo kb = kbs.get(kbs.size() / 2);
+
         // check there are versions in it
         VersionList versions = twClient.getVersions(kb.name);
         assertNotNull(versions);
         assertTrue(!versions.isEmpty());
-        
+
         // take first version
         VersionInfo version = versions.get(0);
-        
+
         // iterate revisions and actions
         RevisionsQuery query = new RevisionsQuery(
-            twClient,
-            kb.name,
-            version.name
+                twClient,
+                kb.name,
+                version.name
         );
-        
+
         final String verPropsGuid = "00000000-0000-0000-0000-000000000010";
-        
-        assert(query.iterator().hasNext());
+
+        assert (query.iterator().hasNext());
         for (RevisionInfo revision : query) {
             assertTrue(revision.id >= 0);
             assertNotNull(revision.guid);
@@ -170,7 +135,7 @@ public class TeamWorkService2ClientTest {
             assertFalse(revision.author.isEmpty());
             assertFalse(revision.comment.isEmpty());
             assertNotNull(revision.date);
-            
+
             for (ActionInfo action : revision.getActions()) {
                 assertNotEquals(new UUID(0L, 0L), action.objectGuid);
                 assertFalse(action.objectKey.isEmpty());
@@ -181,7 +146,7 @@ public class TeamWorkService2ClientTest {
                 assertNotNull(action.objectDescription);
                 assertNotNull(action.actionType);
                 assertFalse(action.userName.isEmpty());
-                
+
                 // editedTimestamp may be null
                 // assertNotNull(action.editedTimestamp);
             }
