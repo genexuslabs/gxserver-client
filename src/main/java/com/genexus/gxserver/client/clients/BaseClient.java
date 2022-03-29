@@ -113,7 +113,7 @@ public abstract class BaseClient {
     protected void addMessageContextProperties(BindingProvider bindingProvider) throws MalformedURLException {
         BindingData binding = getBindingData();
         Map requestContext = bindingProvider.getRequestContext();
-        
+
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, binding.url.toString());
 
         requestContext.put(ServiceData.GXSERVER_ISSECURE_PROPERTY, Boolean.toString(binding.isSecure));

@@ -109,7 +109,7 @@ public class TeamWorkService2Client extends BaseClient {
             SimpleTransfer parameters = new SimpleTransfer();
             Holder<ArrayOfServerMessage> messages = new Holder<>(new ArrayOfServerMessage());
             Holder<ArrayOfTransferProp> properties = new Holder<>(createBasicProperties());
-            
+
             FileTransfer transfer = getTeamWorkService2().hostedKBs(parameters, messages, properties);
             byte[] bytes = transfer.getFileByteStream();
             InputStream stream = new ByteArrayInputStream(bytes);

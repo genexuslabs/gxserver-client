@@ -47,7 +47,7 @@ public class ServiceData {
         this.userPassword = userPassword;
         this.token = "";
     }
-    
+
     public ServiceData(URL serverURL, String token) {
         this.serverURL = serverURL;
         this.userName = "usr";
@@ -62,7 +62,7 @@ public class ServiceData {
     public ServiceData(String serverPath, String user, String password, String protocol) throws MalformedURLException {
         this(createURL(serverPath, protocol), user, password);
     }
-    
+
     public ServiceData(String serverPath, String token) throws MalformedURLException {
         this(createURL(serverPath, HTTPS_PROTOCOL), token);
     }
