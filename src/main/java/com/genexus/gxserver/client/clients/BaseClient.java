@@ -118,7 +118,7 @@ public abstract class BaseClient {
 
         requestContext.put(ServiceData.GXSERVER_ISSECURE_PROPERTY, Boolean.toString(binding.isSecure));
         if (binding.isSecure) {
-            if (!serviceData.getToken().isBlank())
+            if (!serviceData.getToken().isEmpty())
                 requestContext.put(MessageContext.HTTP_REQUEST_HEADERS, Collections.singletonMap("Authorization", Collections.singletonList(serviceData.getToken())));
                 
             requestContext.put(ServiceData.GXSERVER_USERNAME_PROPERTY, serviceData.getUserName());
