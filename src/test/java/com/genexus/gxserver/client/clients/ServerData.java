@@ -31,19 +31,19 @@ import java.net.MalformedURLException;
  * @author jlr
  */
 public class ServerData {
-    
-        public static ServiceData getServerDataUserAndPassword() throws MalformedURLException {
-            return new ServiceData(
-                    "https://open.genexusserver.com/v17",
-                    System.getenv("GXSERVER_USER"),
-                    System.getenv("GXSERVER_PASSWORD")
-                );
-        }
-        
-        public static ServiceData getServerDataToken() throws MalformedURLException {
-            return new ServiceData(
-                    "https://open.genexusserver.com/v17",
-                    System.getenv("GXSERVER_TOKEN")
-                );
-        }
+
+    public static ServiceData getServerDataUserAndPassword() throws MalformedURLException {
+        return new ServiceData(
+                "https://samples.genexusserver.com/v17",
+                System.getenv("GXSERVER_USER"),
+                System.getenv("GXSERVER_PASSWORD")
+        );
+    }
+
+    public static ServiceData getServerDataToken() throws MalformedURLException {
+        return new ServiceData(
+                "https://samples.genexusserver.com/v17",
+                System.getenv("GXSERVER_TOKEN")
+        );
+    }
 }
