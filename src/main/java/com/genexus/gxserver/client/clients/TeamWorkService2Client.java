@@ -77,6 +77,10 @@ public class TeamWorkService2Client extends BaseClient {
     public TeamWorkService2Client(String serverURL, String user, String password) throws MalformedURLException {
         this(new ServiceData(serverURL, user, password));
     }
+    
+    public TeamWorkService2Client(String serverURL, String token) throws MalformedURLException {
+        this(new ServiceData(serverURL, token));
+    }
 
     public TeamWorkService2Client(ServiceData serviceData) throws MalformedURLException {
         super(serviceData);

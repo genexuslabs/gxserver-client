@@ -36,6 +36,7 @@ public class ServiceData {
     private final URL serverURL;
     private final String userName;
     private final String userPassword;
+    private final String token;
 
     public static final String HTTP_PROTOCOL = "http";
     public static final String HTTPS_PROTOCOL = "https";
@@ -44,6 +45,14 @@ public class ServiceData {
         this.serverURL = serverURL;
         this.userName = userName;
         this.userPassword = userPassword;
+        this.token = "";
+    }
+
+    public ServiceData(URL serverURL, String token) {
+        this.serverURL = serverURL;
+        this.userName = "usr";
+        this.userPassword = "pwd";
+        this.token = token;
     }
 
     public ServiceData(String serverPath, String user, String password) throws MalformedURLException {
@@ -52,6 +61,10 @@ public class ServiceData {
 
     public ServiceData(String serverPath, String user, String password, String protocol) throws MalformedURLException {
         this(createURL(serverPath, protocol), user, password);
+    }
+
+    public ServiceData(String serverPath, String token) throws MalformedURLException {
+        this(createURL(serverPath, HTTPS_PROTOCOL), token);
     }
 
     private static URL createURL(String serverPath, String protocol) throws MalformedURLException {
@@ -73,6 +86,10 @@ public class ServiceData {
 
     public String getUserPassword() {
         return userPassword;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public static final String GXSERVER_ISSECURE_PROPERTY = "com.genexus.server.clients.common.servicedata.issecure";
