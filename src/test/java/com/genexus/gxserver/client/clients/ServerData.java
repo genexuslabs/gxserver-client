@@ -32,7 +32,7 @@ import java.net.MalformedURLException;
  */
 public class ServerData {
     
-        public static ServiceData getServerDatauserAndPassword() throws MalformedURLException {
+        public static ServiceData getServerDataUserAndPassword() throws MalformedURLException {
             return new ServiceData(
                     "https://open.genexusserver.com/v17",
                     System.getenv("GXSERVER_USER"),
@@ -43,7 +43,7 @@ public class ServerData {
         public static ServiceData getServerDataToken() throws MalformedURLException {
             return new ServiceData(
                     "https://open.genexusserver.com/v17",
-                    "a9b30c7d-888a-45fa-9493-3f9aaadedae0!e874ed2c1dc477876adf73a2e7083ce9fc47441afcb38005315c6013dcccc79c06a320b1dbb2f4"
+                    System.getenv("GXSERVER_TOKEN")
                 );
         }
 }
