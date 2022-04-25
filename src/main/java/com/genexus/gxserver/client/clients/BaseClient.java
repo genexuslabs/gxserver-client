@@ -23,7 +23,6 @@
  */
 package com.genexus.gxserver.client.clients;
 
-import com.genexus.gxserver.client.clients.common.NaiveSSLHelper;
 import com.genexus.gxserver.client.clients.common.ServiceData;
 import com.genexus.gxserver.client.clients.common.ServiceInfo;
 import jakarta.xml.ws.BindingProvider;
@@ -34,7 +33,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  *
@@ -107,7 +105,6 @@ public abstract class BaseClient {
 
     protected void prepareClient(BindingProvider bindingProvider) throws MalformedURLException {
         addMessageContextProperties(bindingProvider);
-        NaiveSSLHelper.makeWebServiceClientTrustEveryone(bindingProvider);
     }
 
     protected void addMessageContextProperties(BindingProvider bindingProvider) throws MalformedURLException {
@@ -135,10 +132,6 @@ public abstract class BaseClient {
                 return false;
 
             connection.setRequestMethod("HEAD");
-
-            if (connection instanceof HttpsURLConnection) {
-                NaiveSSLHelper.makeHttpsURLConnectionTrustEveryone((HttpsURLConnection)connection);
-            }
 
             int response = connection.getResponseCode();
             return response == HttpURLConnection.HTTP_NOT_FOUND;
