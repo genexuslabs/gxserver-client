@@ -144,8 +144,8 @@ public class ServerHelperClient extends BaseClient {
                         serverInfo.allowsCustomBinding = TransferPropHelper.getBooleanValue(prop);
                         break;
                         
-                    case TransferPropConstants.SUPPORT_GXPLATFORM_INTEGRATION:
-                        serverInfo.supportsGXPlatformIntegration = TransferPropHelper.getBooleanValue(prop);
+                    case TransferPropConstants.REST_SERVICES_API_VERSION:
+                        serverInfo.restServicesAPIVersion = TransferPropHelper.getIntValue(prop);
                         break;
 
                     default:

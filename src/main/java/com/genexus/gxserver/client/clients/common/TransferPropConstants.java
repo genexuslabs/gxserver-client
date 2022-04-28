@@ -130,5 +130,5 @@ public class TransferPropConstants {
     public final static String KB_TEMPLATE_ID = "KBTemplateId";
     public final static String KB_IMAGE_ID = "KBImageId";
     public final static String KB_LANGUAJE = "KBLanguage";
-    public final static String SUPPORT_GXPLATFORM_INTEGRATION = "SupportGXPlatformIntegration";
+    public final static String REST_SERVICES_API_VERSION = "RestServicesAPIVersion";
 }

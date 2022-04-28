@@ -50,5 +50,5 @@ public class ServerInfo {
     public Boolean allowsCustomBinding = false;
     
     @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
-    public Boolean supportsGXPlatformIntegration = false;
+    public int restServicesAPIVersion = 0;
 }
