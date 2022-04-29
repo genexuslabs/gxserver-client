@@ -48,4 +48,7 @@ public class ServerInfo {
 
     @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
     public Boolean allowsCustomBinding = false;
+    
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public int restServicesAPIVersion = 0;
 }

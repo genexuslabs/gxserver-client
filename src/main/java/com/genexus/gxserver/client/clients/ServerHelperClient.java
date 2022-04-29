@@ -143,6 +143,10 @@ public class ServerHelperClient extends BaseClient {
                     case TransferPropConstants.SERVER_CUSTOM_BINDING:
                         serverInfo.allowsCustomBinding = TransferPropHelper.getBooleanValue(prop);
                         break;
+                        
+                    case TransferPropConstants.REST_SERVICES_API_VERSION:
+                        serverInfo.restServicesAPIVersion = TransferPropHelper.getIntValue(prop);
+                        break;
 
                     default:
                         Logger.getLogger(ServerHelperClient.class.getName()).log(Level.WARNING, "Unknown server property: {0}", prop.getName());
