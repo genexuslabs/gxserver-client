@@ -277,6 +277,7 @@ THE SOFTWARE.
                 <version>2.5.3</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>ci-cd</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
