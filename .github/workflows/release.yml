@@ -24,6 +24,11 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_BUILDER_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+    - name: Configure Git User
+      run: |
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions"
+
     - name: Deploy with Maven
       run: mvn -B release:clean release:prepare release:perform -Pci-cd
       env:
@@ -33,6 +38,9 @@ jobs:
         GXSERVER_USER: ${{ secrets.GENEXUS_GENERIC_USER }}
         GXSERVER_PASSWORD: ${{ secrets.GENEXUS_GENERIC_PASSWORD }}
         GXSERVER_TOKEN: ${{ secrets.GENEXUS_GENERICUSER_TOKEN }}
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ github.token }}
+
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
