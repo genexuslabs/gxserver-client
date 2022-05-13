@@ -41,9 +41,15 @@ jobs:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ github.token }}
 
+    - name: Get SCM tag
+      run: |
+        SCM_TAG=$( mvn help:evaluate -Dexpression=project.scm.tag -q -DforceStdout )
+        echo "::set-output name=scm_tag::$SCM_TAG"
+      id: get_scm_tag
+        
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
         allowUpdates: true
-        tag: "${{ mvn help:evaluate -Dexpression=project.scm.tag -q -DforceStdout }}"
+        tag: "${{ steps.get_scm_tag.outputs.scm_tag }}"
         artifacts: "${{ github.workspace }}/target/*.jar"
