@@ -332,6 +332,7 @@ THE SOFTWARE.
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
