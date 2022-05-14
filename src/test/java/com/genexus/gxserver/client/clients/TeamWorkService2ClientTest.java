@@ -71,8 +71,8 @@ public class TeamWorkService2ClientTest {
      * @throws java.lang.Exception
      */
     @Test
-    public void testGetRevisions() throws Exception {
-        ServiceData serverData = ServerData.getServerDataUserAndPassword();
+    public void testAccessByCredentials() throws Exception {
+        ServiceData serverData = ServerData.getCredentialsServerData();
         TeamWorkService2Client twClient = new TeamWorkService2Client(
                 serverData.getServerURL().toString(),
                 serverData.getUserName(),
@@ -89,8 +89,8 @@ public class TeamWorkService2ClientTest {
      * @throws java.lang.Exception
      */
     @Test
-    public void testGetRevisionsUsingToken() throws Exception {
-        ServiceData serverData = ServerData.getServerDataToken();
+    public void testAccessByToken() throws Exception {
+        ServiceData serverData = ServerData.getTokenServerData();
         TeamWorkService2Client twClient = new TeamWorkService2Client(
                 serverData.getServerURL().toString(),
                 serverData.getToken()

@@ -65,7 +65,7 @@ public class ServerHelperClientTest {
     public void testIsServerAlive() throws Exception {
         System.out.println("isServerAlive");
 
-        ServiceData serverData = ServerData.getServerDataUserAndPassword();
+        ServiceData serverData = ServerData.getCredentialsServerData();
         ServerHelperClient instance = new ServerHelperClient(
                 serverData.getServerURL().toString()
         );
@@ -81,7 +81,7 @@ public class ServerHelperClientTest {
     public void testGetServerInfo() throws Exception {
         System.out.println("getServerInfo");
 
-        ServiceData serverData = ServerData.getServerDataUserAndPassword();
+        ServiceData serverData = ServerData.getCredentialsServerData();
         ServerHelperClient instance = new ServerHelperClient(
                 serverData.getServerURL().toString()
         );
