@@ -12,6 +12,11 @@ jobs:
       matrix:
         java: [ 8, 11 ]
         os: [ ubuntu, windows ]
+        exclude:
+          - java: 8
+            os: windows
+          - java: 11
+            os: ubuntu
 
     steps:
     - name: Checkout
