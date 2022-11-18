@@ -14,9 +14,9 @@ jobs:
         os: [ ubuntu, windows ]
         exclude:
           - java: 8
-            os: ubuntu
-          - java: 11
             os: windows
+          - java: 11
+            os: ubuntu
 
     steps:
     - name: Checkout
