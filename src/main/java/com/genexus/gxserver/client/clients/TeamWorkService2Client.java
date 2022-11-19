@@ -51,7 +51,9 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.logging.Filter;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -77,7 +79,7 @@ public class TeamWorkService2Client extends BaseClient {
     public TeamWorkService2Client(String serverURL, String user, String password) throws MalformedURLException {
         this(new ServiceData(serverURL, user, password));
     }
-    
+
     public TeamWorkService2Client(String serverURL, String token) throws MalformedURLException {
         this(new ServiceData(serverURL, token));
     }
@@ -92,6 +94,7 @@ public class TeamWorkService2Client extends BaseClient {
         if (teamWorkService2 == null) {
 
             ITeamWorkService2 port = WithLocalContextClassLoader.call(() -> {
+                setLoggerFilter();
                 TeamWorkService2 service = new TeamWorkService2();
                 return service.getCustomBindingITeamWorkService2(new MTOMFeature(true));
             });
@@ -102,6 +105,24 @@ public class TeamWorkService2Client extends BaseClient {
         }
 
         return teamWorkService2;
+    }
+
+    private static final String LOGGER_CLASS_NAME = "com.sun.xml.ws.wsdl.PayloadQNameBasedOperationFinder";
+    private static final Logger logger = Logger.getLogger(LOGGER_CLASS_NAME);
+    private static final String NON_UNIQUE_BODY_PARTS_MESSAGE_START = "Non unique body parts!";
+
+    private static final class LoggerFilter implements Filter {
+        @Override
+        public boolean isLoggable(LogRecord l) {
+            return !l.getMessage().startsWith(NON_UNIQUE_BODY_PARTS_MESSAGE_START);
+        }
+    }
+
+    private void setLoggerFilter() throws SecurityException {
+        Filter current = logger.getFilter();
+        if (current == null) {
+            logger.setFilter(new LoggerFilter());
+        }
     }
 
     public KBList getHostedKBs() throws IOException {
