@@ -131,4 +131,5 @@ public class TransferPropConstants {
     public final static String KB_IMAGE_ID = "KBImageId";
     public final static String KB_LANGUAJE = "KBLanguage";
     public final static String REST_SERVICES_API_VERSION = "RestServicesAPIVersion";
+    public final static String SUPPORT_CONTINUOUS_INTEGRATION = "SupportContinuousIntegration";
 }

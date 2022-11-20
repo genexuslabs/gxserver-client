@@ -51,4 +51,52 @@ public class ServerInfo {
     
     @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
     public int restServicesAPIVersion = 0;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsSourceChecksum = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsPartialUpdate = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsObjectLock = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsAdvancedVersions = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean expectsReceiveLastUpdateDate = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsAdvancedCheckout = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsBCHRemind = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsVersionManagement = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsAdvancedHostedKB = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsObjectShowDifference = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean supportsMetadataActions = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean usesNewPermissionsName = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean usesToledoUrlFormat = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean allowsCheckoutVersion = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean supportsExploreRemoteKb = false;
+
+    @SuppressFBWarnings( "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" )
+    public Boolean supportsContinuousIntegration = false;
 }
