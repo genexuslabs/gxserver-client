@@ -148,6 +148,70 @@ public class ServerHelperClient extends BaseClient {
                         serverInfo.restServicesAPIVersion = TransferPropHelper.getIntValue(prop);
                         break;
 
+                    case TransferPropConstants.SERVER_ALLOW_SOURCE_CHECKSUM:
+                        serverInfo.allowsSourceChecksum = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_PARTIAL_UPDATE:
+                        serverInfo.allowsPartialUpdate = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_OBJECT_LOCK:
+                        serverInfo.allowsObjectLock = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_ADVANCED_VERSIONS:
+                        serverInfo.allowsAdvancedVersions = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_EXPECTS_RECEIVE_LAST_UPDATE_DATE:
+                        serverInfo.expectsReceiveLastUpdateDate = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_ADVANCED_CHECKOUT:
+                        serverInfo.allowsAdvancedCheckout = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_BCH_REMIND:
+                        serverInfo.allowsBCHRemind = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_VERSION_MANAGE_SUPPORT:
+                        serverInfo.allowsVersionManagement = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_ADVANCED_HOSTED_KB:
+                        serverInfo.allowsAdvancedHostedKB = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_ALLOW_OBJECT_SHOW_DIFFERENCE:
+                        serverInfo.allowsObjectShowDifference = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SERVER_SUPPORT_METADATA_ACTIONS:
+                        serverInfo.supportsMetadataActions = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.USES_NEW_PERMISSIONS_NAME:
+                        serverInfo.usesNewPermissionsName = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.USES_TOLEDO_URL_FORMAT:
+                        serverInfo.usesToledoUrlFormat = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.ALLOW_CHECKOUT_VERSION:
+                        serverInfo.allowsCheckoutVersion = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SUPPORT_EXPLORE_REMOTE_KB:
+                        serverInfo.supportsExploreRemoteKb = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
+                    case TransferPropConstants.SUPPORT_CONTINUOUS_INTEGRATION:
+                        serverInfo.supportsContinuousIntegration = TransferPropHelper.getBooleanValue(prop);
+                        break;
+                        
                     default:
                         Logger.getLogger(ServerHelperClient.class.getName()).log(Level.WARNING, "Unknown server property: {0}", prop.getName());
                 }
