@@ -249,6 +249,7 @@ THE SOFTWARE.
                 <configuration>
                     <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
                     <xnocompile>true</xnocompile>
+                    <quiet>true</quiet>
                     <verbose>true</verbose>
                     <extension>true</extension>
                 </configuration>
