@@ -44,7 +44,7 @@ jobs:
     - name: Get SCM tag
       run: |
         SCM_TAG=$( mvn help:evaluate -Dexpression=project.scm.tag -q -DforceStdout )
-        echo "::set-output name=scm_tag::$SCM_TAG"
+        echo "scm_tag=$SCM_TAG" >> $GITHUB_OUTPUT
       id: get_scm_tag
         
     - name: Create release
