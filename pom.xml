@@ -109,7 +109,7 @@ THE SOFTWARE.
         <dependency>
             <groupId>com.sun.xml.ws</groupId>
             <artifactId>jaxws-rt</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
