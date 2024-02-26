@@ -45,8 +45,8 @@ jobs:
         GXSERVER_USER: ${{ secrets.GENEXUS_GENERIC_USER }}
         GXSERVER_PASSWORD: ${{ secrets.GENEXUS_GENERIC_PASSWORD }}
         GXSERVER_TOKEN: ${{ secrets.GENEXUS_GENERICUSER_TOKEN }}
-        GITHUB_ACTOR: ${{ github.actor }}
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_ACTOR: ${{ secrets.RELEASE_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
     - name: Get SCM tag
       run: |
