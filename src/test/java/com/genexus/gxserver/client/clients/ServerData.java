@@ -34,7 +34,7 @@ public class ServerData {
 
     public static ServiceData getCredentialsServerData() throws MalformedURLException {
         return new ServiceData(
-                "https://samples.genexusserver.com/v17",
+                "https://samples.genexusserver.com/v18",
                 System.getenv("GXSERVER_USER"),
                 System.getenv("GXSERVER_PASSWORD")
         );
@@ -42,7 +42,7 @@ public class ServerData {
 
     public static ServiceData getTokenServerData() throws MalformedURLException {
         return new ServiceData(
-                "https://samples.genexusserver.com/v17",
+                "https://samples.genexusserver.com/v18",
                 System.getenv("GXSERVER_TOKEN")
         );
     }
